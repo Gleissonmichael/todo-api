@@ -36,15 +36,14 @@ export class TodoController {
   async createTodo(@Req() request: Request): Promise<Result<any>> {
     const todo = request.body.todo;
 
-    console.log(todo);
-
     const result = await this.todoService.createTodo(todo);
     return new Result<any>(true, result, null);
   }
 
   @Put("/:id")
   async updateTodo(@Req() request: Request): Promise<Result<any>> {
-    const todo = request.body.todo;
+    const todo = request.body;
+
     const id = request.params.id;
 
     const result = await this.todoService.updateTodo(id, todo);

@@ -9,7 +9,7 @@ export class TodoRepository {
   constructor() {}
 
   getAll(): Todo[] {
-    return data as Todo[];
+    return data.data as Todo[];
   }
 
   getByTodoId(id: number): Todo {
@@ -21,7 +21,6 @@ export class TodoRepository {
   updateTodo(id: number, newTodo: Todo): Todo {
     const index = data.data.findIndex((e) => e.id == id);
 
-    console.log(newTodo)
     data.data[index] = newTodo;
 
     return data.data[index];
@@ -33,13 +32,15 @@ export class TodoRepository {
   }
 
   deleteByTodoId(id: number): Todo {
-    const todos = data as Todo[];
+    var index = data.data.findIndex(e => e.id === id);
 
-    var index = todos.indexOf((e) => e.id === id);
-
+    console.log(id)
+    console.log(data.data)
+    console.log(index)
     if (index > -1) {
-      todos.data.splice(index, 1);
+      console.log('entrou no if')
+      data.data.splice(index, 1);
     }
-    return todos;
+    return data.data;
   }
 }
