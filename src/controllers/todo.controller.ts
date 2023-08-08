@@ -22,7 +22,13 @@ export class TodoController {
 
   @Options("*")
   handleOptions(@Res() res: Response) {
-    res.status(HttpStatus.NO_CONTENT).send();
+    res.setHeader("Access-Control-Allow-Origin", "*"); 
+    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    res.status(200).send();
   }
 
   @Get("/")
