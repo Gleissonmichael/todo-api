@@ -6,6 +6,7 @@ import {
   Post,
   Req,
   Put,
+  Options,
   Param,
   Body,
 } from "@nestjs/common";
@@ -17,6 +18,11 @@ import { Todo } from "../domain/entities/todo";
 @Controller("/todo")
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
+
+  @Options("*")
+  handleOptions(@Res() res: Response) {
+    res.status(HttpStatus.NO_CONTENT).send();
+  }
 
   @Get("/")
   async getAll(@Req() request: Request): Promise<Result<any>> {
