@@ -6,9 +6,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {});
 
   const corsOptions: CorsOptions = {
-    origin: "*",
+    origin: [
+      "http://localhost:4200",
+      "https://todo-front-theta.vercel.app/"
+    ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
     preflightContinue: false,
+    credentials: true,
     optionsSuccessStatus: 200,
     allowedHeaders: "Content-Type, Accept",
   };
