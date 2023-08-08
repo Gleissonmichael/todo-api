@@ -7,6 +7,7 @@ import {
   Req,
   Put,
   Options,
+  Res,
   Param,
   Body,
 } from "@nestjs/common";
