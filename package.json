@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "nest start --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "build": "sanity build public -y",
     "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production",
     "start": "nest start",
     "dev": "ts-node-dev --respawn --transpile-only index.ts"
