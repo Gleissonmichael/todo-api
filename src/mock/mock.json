@@ -3,12 +3,20 @@
     {
       "id": 14007823,
       "name": "Tarefa 1",
-      "category": "Desenvolvimento Api"
+      "category": "Desenvolvimento Api",
+      "isCompleted": true
     },
     {
-        "id": 1231245,
-        "name": "Tarefa 2",
-        "category": "Desenvolvimento Frontend"
-      }
+      "id": 12312458,
+      "name": "Tarefa 2",
+      "category": "Desenvolvimento Frontend",
+      "isCompleted": false
+    },
+       {
+      "id": 87634012,
+      "name": "Criar estilos para os TODOS",
+      "category": "Desenvolvimento Frontend",
+      "isCompleted": true
+    }
   ]
 }

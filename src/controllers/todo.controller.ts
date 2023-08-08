@@ -34,7 +34,7 @@ export class TodoController {
 
   @Post("/")
   async createTodo(@Req() request: Request): Promise<Result<any>> {
-    const todo = request.body.todo;
+    const todo = request.body;
 
     const result = await this.todoService.createTodo(todo);
     return new Result<any>(true, result, null);

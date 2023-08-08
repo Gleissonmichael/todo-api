@@ -4,6 +4,17 @@ import { Todo } from "../domain/entities/todo";
 import mockData from "../mock/mock.json";
 
 let data = mockData;
+
+function generateId() {
+  let sequence = '';
+
+  for (let i = 0; i < 8; i++) {
+    const randomNumber = Math.floor(Math.random() * 10); // Gera um número entre 0 e 9
+    sequence += randomNumber;
+  }
+
+  return sequence;
+}
 @Injectable()
 export class TodoRepository {
   constructor() {}
@@ -27,18 +38,22 @@ export class TodoRepository {
   }
 
   createTodo(newTodo: Todo): Todo {
-    data.data.push(newTodo);
-    return data.data;
+    const todo = {
+      id: generateId(),
+      name: newTodo.name,
+      category: newTodo.category,
+      isCompleted: false,
+    };
+
+    data.data.push(todo);
+    return todo;
   }
 
   deleteByTodoId(id: number): Todo {
-    var index = data.data.findIndex(e => e.id === id);
+    var index = data.data.findIndex((e) => e.id === id);
 
-    console.log(id)
-    console.log(data.data)
-    console.log(index)
     if (index > -1) {
-      console.log('entrou no if')
+      console.log("entrou no if");
       data.data.splice(index, 1);
     }
     return data.data;
