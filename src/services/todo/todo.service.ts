@@ -27,6 +27,11 @@ export class TodoService {
     return result;
   }
 
+  async completeTodo(id: number): Promise<Todo> {
+    const result = await this.todoRepository.completeTodo(id);
+    return result;
+  }
+
   async deleteByTodoId(id: number): Promise<Todo> {
     const result = await this.todoRepository.deleteByTodoId(id);
     return result;

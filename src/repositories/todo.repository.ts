@@ -6,7 +6,7 @@ import mockData from "../mock/mock.json";
 let data = mockData;
 
 function generateId() {
-  let sequence = '';
+  let sequence = "";
 
   for (let i = 0; i < 8; i++) {
     const randomNumber = Math.floor(Math.random() * 10); // Gera um número entre 0 e 9
@@ -35,6 +35,14 @@ export class TodoRepository {
     data.data[index] = newTodo;
 
     return data.data[index];
+  }
+
+  completeTodo(id: number): Todo {
+    const index = data.data.findIndex((e) => e.id == id);
+
+    data.data[index].isCompleted = !data.data[index].isCompleted;
+
+    return data.data;
   }
 
   createTodo(newTodo: Todo): Todo {

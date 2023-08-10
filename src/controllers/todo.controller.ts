@@ -10,6 +10,7 @@ import {
   Res,
   Param,
   Body,
+  Patch,
 } from "@nestjs/common";
 import { Result } from "../modules/result";
 import { TodoService } from "../services/todo/todo.service";
@@ -19,17 +20,6 @@ import { Todo } from "../domain/entities/todo";
 @Controller("/todo")
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
-
-  @Options("*")
-  handleOptions(@Res() res: Response) {
-    res.setHeader("Access-Control-Allow-Origin", "*"); 
-    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    );
-    res.status(200).send();
-  }
 
   @Get("/")
   async getAll(@Req() request: Request): Promise<Result<any>> {
@@ -60,6 +50,14 @@ export class TodoController {
     const id = request.params.id;
 
     const result = await this.todoService.updateTodo(id, todo);
+    return new Result<any>(true, result, null);
+  }
+
+  @Patch("/:id")
+  async completeTodo(@Req() request: Request): Promise<Result<any>> {
+    const id = request.params.id;
+
+    const result = await this.todoService.completeTodo(id);
     return new Result<any>(true, result, null);
   }
 
